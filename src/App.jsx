@@ -19,9 +19,9 @@ import {
 /*
     ╔═══════════════════════════════════════════════════════════════╗
     ║                                                               ║
-    ║     🏆 DTGC PREMIUM STAKING PLATFORM V18 DIAMOND+ 🏆         ║
+    ║     🏆 DTGC PREMIUM STAKING PLATFORM V19 DIAMOND+ 🏆         ║
     ║                                                               ║
-    ║     ✦ V18 Gold Paper Tokenomics (82% Project Supply!)         ║
+    ║     ✦ V19 Gold Paper Tokenomics (82% Project Supply!)         ║
     ║     ✦ Diamond (DTGC/PLS) + Diamond+ (DTGC/URMOM) LP Tiers    ║
     ║     ✦ 3% Total Fees • All Tiers Profitable                   ║
     ║     ✦ Gold Supply Dynamics + Live Holder Ticker              ║
@@ -47,7 +47,7 @@ const DTGC_TOKENOMICS = {
   lpLocked: 87000000,        // 8.7% - LP Locked
 };
 
-// V18 PROFITABLE FEE STRUCTURE (Reduced for positive staker ROI)
+// V19 PROFITABLE FEE STRUCTURE (Reduced for positive staker ROI)
 const V5_FEES = {
   // Entry Tax: 1.5% total (reduced from 5%)
   entry: {
@@ -76,7 +76,7 @@ const V5_FEES = {
   },
 };
 
-// V18 PROFITABLE STAKING TIERS (All tiers positive ROI with 3% total fees)
+// V19 PROFITABLE STAKING TIERS (All tiers positive ROI with 3% total fees)
 const V5_STAKING_TIERS = [
   { 
     id: 0, 
@@ -332,7 +332,7 @@ const plsPrice = 0.00003;
 
 const SOCIAL_LINKS = {
   xUrmom: 'https://x.com/UrmomPulse',
-  xDumpTires: 'https://x.com/Dump_Tires',
+  xDTGC: 'https://x.com/DTGoldCoin',
   telegram: 'https://t.me/urmomPulse',
   website: 'https://dtgc.io',
   dexscreener: 'https://dexscreener.com/pulsechain/0x0548656e272fec9534e180d3174cfc57ab6e10c0',
@@ -3193,7 +3193,7 @@ export default function App() {
         {/* Hero */}
         <section className="hero-section" style={TESTNET_MODE ? {paddingTop: '180px'} : {}}>
           <div className="hero-badge">
-            {TESTNET_MODE ? '🧪 V18 DIAMOND+ EDITION • TESTNET 🧪' : '🔴 LIVE • DT GOLD COIN • MAINNET'}
+            {TESTNET_MODE ? '🧪 V19 DIAMOND+ EDITION • TESTNET 🧪' : '🔴 LIVE • DT GOLD COIN • MAINNET'}
           </div>
           <h1 className="hero-title gold-text">DTGC STAKING</h1>
           <p className="hero-subtitle">Stake • Earn • Govern • Prosper</p>
@@ -3556,7 +3556,7 @@ export default function App() {
               gap: '12px',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '0.75rem', color: '#888' }}>CONTROLLED:</span>
+                <span style={{ fontSize: '0.75rem', color: '#888' }}>PROJECT SUPPLY:</span>
                 <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#4CAF50' }}>
                   {(((supplyDynamics.dao + supplyDynamics.dev + supplyDynamics.lpLocked) / DTGC_TOTAL_SUPPLY) * 100).toFixed(1)}%
                 </span>
@@ -4212,7 +4212,7 @@ export default function App() {
                 gap: '20px',
                 marginBottom: '40px',
               }}>
-                <a href="/docs/DTGC-V18-White-Paper.docx" download style={{
+                <a href="/docs/DTGC-V19-White-Paper.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(184,134,11,0.15) 100%)',
                   border: '2px solid rgba(212,175,55,0.4)',
                   borderRadius: '16px',
@@ -4226,12 +4226,12 @@ export default function App() {
                   <span style={{fontSize: '2.5rem'}}>📄</span>
                   <div>
                     <div style={{fontFamily: 'Cinzel, serif', fontWeight: 700, color: 'var(--gold)', fontSize: '1.1rem'}}>WHITE PAPER</div>
-                    <div style={{fontSize: '0.8rem', color: 'var(--text-secondary)'}}>Public Overview • V18</div>
+                    <div style={{fontSize: '0.8rem', color: 'var(--text-secondary)'}}>Public Overview • V19</div>
                     <div style={{fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '4px'}}>📥 Download .docx</div>
                   </div>
                 </a>
                 
-                <a href="/docs/DTGC-V18-Gold-Paper-DiamondPlus.docx" download style={{
+                <a href="/docs/DTGC-V19-Gold-Paper-DiamondPlus.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.2) 100%)',
                   border: '2px solid rgba(212,175,55,0.5)',
                   borderRadius: '16px',
@@ -4250,7 +4250,7 @@ export default function App() {
                   </div>
                 </a>
                 
-                <a href="/docs/DTGC-V18-Gold-Paper-Quant.docx" download style={{
+                <a href="/docs/DTGC-V19-Gold-Paper-Quant.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(26,35,126,0.1) 0%, rgba(48,63,159,0.15) 100%)',
                   border: '2px solid rgba(26,35,126,0.4)',
                   borderRadius: '16px',
@@ -4295,7 +4295,7 @@ export default function App() {
                     </tbody>
                   </table>
                   <div className="wp-highlight">
-                    <strong>V18 Tax Structure (Optimized for Staker Profitability):</strong><br/>
+                    <strong>V19 Tax Structure (Optimized for Staker Profitability):</strong><br/>
                     <div style={{marginTop: '8px'}}>
                       <strong style={{color: '#4CAF50'}}>Entry Tax (1.5%):</strong> 0.75% DAO • 0.25% Dev • 0.25% DTGC/URMOM LP • 0.15% DTGC/PLS LP • 0.1% Burn<br/><br/>
                       <strong style={{color: '#4CAF50'}}>Exit Tax (1.5%):</strong> Same breakdown • <strong>Only 3% total fees!</strong><br/><br/>
@@ -4306,7 +4306,7 @@ export default function App() {
               </div>
 
               <div className="wp-card">
-                <h3 className="wp-card-title gold-text">⭐ V18 Staking Tiers (All Profitable!)</h3>
+                <h3 className="wp-card-title gold-text">⭐ V19 Staking Tiers (All Profitable!)</h3>
                 <div className="wp-card-content">
                   <table className="tokenomics-table">
                     <thead>
@@ -4390,11 +4390,11 @@ export default function App() {
                     <div className="link-url">@UrmomPulse</div>
                   </div>
                 </a>
-                <a href={SOCIAL_LINKS.xDumpTires} target="_blank" rel="noopener noreferrer" className="link-card">
+                <a href={SOCIAL_LINKS.xDTGC} target="_blank" rel="noopener noreferrer" className="link-card">
                   <span className="link-icon">𝕏</span>
                   <div className="link-info">
-                    <div className="link-name">Dump Tires Twitter</div>
-                    <div className="link-url">@Dump_Tires</div>
+                    <div className="link-name">DTGC Twitter</div>
+                    <div className="link-url">@DTGoldCoin</div>
                   </div>
                 </a>
                 <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" className="link-card">
