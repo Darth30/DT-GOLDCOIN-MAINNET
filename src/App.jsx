@@ -19,15 +19,15 @@ import {
 /*
     ╔═══════════════════════════════════════════════════════════════╗
     ║                                                               ║
-    ║     🏆 DTGC PREMIUM STAKING PLATFORM V17 DIAMOND+ 🏆         ║
+    ║     🏆 DTGC PREMIUM STAKING PLATFORM V18 DIAMOND+ 🏆         ║
     ║                                                               ║
-    ║     ✦ V17 Gold Paper Tokenomics (91% Controlled!)            ║
+    ║     ✦ V18 Gold Paper Tokenomics (82% Project Supply!)         ║
     ║     ✦ Diamond (DTGC/PLS) + Diamond+ (DTGC/URMOM) LP Tiers    ║
     ║     ✦ 3% Total Fees • All Tiers Profitable                   ║
     ║     ✦ Gold Supply Dynamics + Live Holder Ticker              ║
     ║     ✦ Live Prices from DexScreener                           ║
     ║                                                               ║
-    ║                    dump.tires                                 ║
+    ║                    dtgc.io                                    ║
     ╚═══════════════════════════════════════════════════════════════╝
 */
 
@@ -36,7 +36,7 @@ import {
 // ═══════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════
-//                    V5 GOLD PAPER TOKENOMICS (91% CONTROLLED)
+//                    V5 GOLD PAPER TOKENOMICS (82% PROJECT SUPPLY)
 // ═══════════════════════════════════════════════════════════════
 
 const DTGC_TOKENOMICS = {
@@ -47,7 +47,7 @@ const DTGC_TOKENOMICS = {
   lpLocked: 87000000,        // 8.7% - LP Locked
 };
 
-// V17 PROFITABLE FEE STRUCTURE (Reduced for positive staker ROI)
+// V18 PROFITABLE FEE STRUCTURE (Reduced for positive staker ROI)
 const V5_FEES = {
   // Entry Tax: 1.5% total (reduced from 5%)
   entry: {
@@ -76,7 +76,7 @@ const V5_FEES = {
   },
 };
 
-// V17 PROFITABLE STAKING TIERS (All tiers positive ROI with 3% total fees)
+// V18 PROFITABLE STAKING TIERS (All tiers positive ROI with 3% total fees)
 const V5_STAKING_TIERS = [
   { 
     id: 0, 
@@ -334,7 +334,7 @@ const SOCIAL_LINKS = {
   xUrmom: 'https://x.com/UrmomPulse',
   xDumpTires: 'https://x.com/Dump_Tires',
   telegram: 'https://t.me/urmomPulse',
-  website: 'https://dump.tires',
+  website: 'https://dtgc.io',
   dexscreener: 'https://dexscreener.com/pulsechain/0x0548656e272fec9534e180d3174cfc57ab6e10c0',
   dexscreenerDTGC: 'https://dexscreener.com/pulsechain/0x0b0a8a0b7546ff180328aa155d2405882c7ac8c7',
   coingecko: 'https://www.coingecko.com/en/coins/urmom-3',
@@ -370,7 +370,7 @@ const VIDEOS = {
 const TESTNET_MODE = false; // MAINNET PRODUCTION
 
 // Password Protection
-const SITE_PASSWORD = 'DTGC2025';
+const SITE_PASSWORD = 'Kamarashar30';
 const PASSWORD_ENABLED = true;
 
 const TESTNET_CONFIG = {
@@ -2557,7 +2557,7 @@ export default function App() {
             </button>
           </form>
           <p style={{ color: '#555', fontSize: '0.7rem', marginTop: '30px', letterSpacing: '1px' }}>
-            A pump.tires contract on PulseChain
+            A dtgc.io contract on PulseChain
           </p>
         </div>
       </div>
@@ -3166,7 +3166,7 @@ export default function App() {
               <div className="logo-mark">DT</div>
               <div className="logo-text-group">
                 <span className="logo-text gold-text">DTGC</span>
-                <span className="logo-tagline">dump.tires</span>
+                <span className="logo-tagline">dtgc.io</span>
               </div>
             </div>
 
@@ -3193,7 +3193,7 @@ export default function App() {
         {/* Hero */}
         <section className="hero-section" style={TESTNET_MODE ? {paddingTop: '180px'} : {}}>
           <div className="hero-badge">
-            {TESTNET_MODE ? '🧪 V17 DIAMOND+ EDITION • TESTNET 🧪' : '🔴 LIVE • DT GOLD COIN • MAINNET'}
+            {TESTNET_MODE ? '🧪 V18 DIAMOND+ EDITION • TESTNET 🧪' : '🔴 LIVE • DT GOLD COIN • MAINNET'}
           </div>
           <h1 className="hero-title gold-text">DTGC STAKING</h1>
           <p className="hero-subtitle">Stake • Earn • Govern • Prosper</p>
@@ -3205,7 +3205,7 @@ export default function App() {
             marginBottom: '20px',
             textTransform: 'uppercase'
           }}>
-            A pump.tires contract, unique decentralized staking mechanism, on PulseChain
+            A dtgc.io contract, unique decentralized staking mechanism, on PulseChain
           </p>
           
           {/* Testnet Balance Display */}
@@ -3268,8 +3268,8 @@ export default function App() {
               <div className="hero-stat-label">Burned Value</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value" style={{color: '#4CAF50'}}>91%</div>
-              <div className="hero-stat-label">Controlled Supply</div>
+              <div className="hero-stat-value" style={{color: '#4CAF50'}}>82%</div>
+              <div className="hero-stat-label">Project Supply</div>
             </div>
           </div>
         </section>
@@ -3296,7 +3296,7 @@ export default function App() {
                 marginBottom: '8px',
                 textTransform: 'uppercase'
               }}>
-                A pump.tires contract, unique decentralized staking mechanism, on PulseChain
+                A dtgc.io contract, unique decentralized staking mechanism, on PulseChain
               </div>
               <h3 style={{ 
                 fontSize: '1.5rem', 
@@ -4212,7 +4212,7 @@ export default function App() {
                 gap: '20px',
                 marginBottom: '40px',
               }}>
-                <a href="/docs/DTGC-V17-White-Paper.docx" download style={{
+                <a href="/docs/DTGC-V18-White-Paper.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(184,134,11,0.15) 100%)',
                   border: '2px solid rgba(212,175,55,0.4)',
                   borderRadius: '16px',
@@ -4226,12 +4226,12 @@ export default function App() {
                   <span style={{fontSize: '2.5rem'}}>📄</span>
                   <div>
                     <div style={{fontFamily: 'Cinzel, serif', fontWeight: 700, color: 'var(--gold)', fontSize: '1.1rem'}}>WHITE PAPER</div>
-                    <div style={{fontSize: '0.8rem', color: 'var(--text-secondary)'}}>Public Overview • V17</div>
+                    <div style={{fontSize: '0.8rem', color: 'var(--text-secondary)'}}>Public Overview • V18</div>
                     <div style={{fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '4px'}}>📥 Download .docx</div>
                   </div>
                 </a>
                 
-                <a href="/docs/DTGC-V17-Gold-Paper-DiamondPlus.docx" download style={{
+                <a href="/docs/DTGC-V18-Gold-Paper-DiamondPlus.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.2) 100%)',
                   border: '2px solid rgba(212,175,55,0.5)',
                   borderRadius: '16px',
@@ -4250,7 +4250,7 @@ export default function App() {
                   </div>
                 </a>
                 
-                <a href="/docs/DTGC-V17-Gold-Paper-Quant.docx" download style={{
+                <a href="/docs/DTGC-V18-Gold-Paper-Quant.docx" download style={{
                   background: 'linear-gradient(135deg, rgba(26,35,126,0.1) 0%, rgba(48,63,159,0.15) 100%)',
                   border: '2px solid rgba(26,35,126,0.4)',
                   borderRadius: '16px',
@@ -4282,7 +4282,7 @@ export default function App() {
                 <h3 className="wp-card-title gold-text">💰 V5 GOLD PAPER TOKENOMICS</h3>
                 <div className="wp-card-content">
                   <p><strong>Total Supply: 1,000,000,000 DTGC</strong></p>
-                  <p style={{color: 'var(--gold)', fontWeight: '600', marginBottom: '16px'}}>⚠️ 91% CONTROLLED • ONLY 9% FLOAT!</p>
+                  <p style={{color: 'var(--gold)', fontWeight: '600', marginBottom: '16px'}}>⚠️ 82% PROJECT SUPPLY • ONLY 18% FLOAT!</p>
                   <table className="tokenomics-table">
                     <thead>
                       <tr><th>Allocation</th><th>Amount</th><th>Percentage</th></tr>
@@ -4295,7 +4295,7 @@ export default function App() {
                     </tbody>
                   </table>
                   <div className="wp-highlight">
-                    <strong>V17 Tax Structure (Optimized for Staker Profitability):</strong><br/>
+                    <strong>V18 Tax Structure (Optimized for Staker Profitability):</strong><br/>
                     <div style={{marginTop: '8px'}}>
                       <strong style={{color: '#4CAF50'}}>Entry Tax (1.5%):</strong> 0.75% DAO • 0.25% Dev • 0.25% DTGC/URMOM LP • 0.15% DTGC/PLS LP • 0.1% Burn<br/><br/>
                       <strong style={{color: '#4CAF50'}}>Exit Tax (1.5%):</strong> Same breakdown • <strong>Only 3% total fees!</strong><br/><br/>
@@ -4306,7 +4306,7 @@ export default function App() {
               </div>
 
               <div className="wp-card">
-                <h3 className="wp-card-title gold-text">⭐ V17 Staking Tiers (All Profitable!)</h3>
+                <h3 className="wp-card-title gold-text">⭐ V18 Staking Tiers (All Profitable!)</h3>
                 <div className="wp-card-content">
                   <table className="tokenomics-table">
                     <thead>
@@ -4408,7 +4408,7 @@ export default function App() {
                   <span className="link-icon">🌐</span>
                   <div className="link-info">
                     <div className="link-name">Website</div>
-                    <div className="link-url">dump.tires</div>
+                    <div className="link-url">dtgc.io</div>
                   </div>
                 </a>
                 <a href={SOCIAL_LINKS.dexscreener} target="_blank" rel="noopener noreferrer" className="link-card">
@@ -4466,7 +4466,7 @@ export default function App() {
             <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noopener noreferrer" className="footer-link">Telegram</a>
           </div>
           <div className="footer-divider" />
-          <p className="footer-text">© 2025 DT GOLD COIN • pump.tires • Premium Staking on PulseChain • Diamond & Diamond+ LP Tiers 💎✨</p>
+          <p className="footer-text">© 2025 DT GOLD COIN • dtgc.io • Premium Staking on PulseChain • Diamond & Diamond+ LP Tiers 💎✨</p>
         </footer>
       </div>
 
