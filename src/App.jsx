@@ -370,8 +370,12 @@ const VIDEOS = {
 const TESTNET_MODE = false; // MAINNET PRODUCTION
 
 // Password Protection
-const SITE_PASSWORD = 'DTGC2025';
+const SITE_PASSWORD = 'GOLD$tack91!';
 const PASSWORD_ENABLED = true;
+
+// IP Logging Configuration
+const LOG_ACCESS_ATTEMPTS = true;
+const LOG_ENDPOINT = 'https://api.ipify.org?format=json'; // Get visitor IP
 
 const TESTNET_CONFIG = {
   startingPLS: 100000000,      // 100M PLS
@@ -2475,14 +2479,79 @@ export default function App() {
   });
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+  const [accessLogs, setAccessLogs] = useState([]);
+
+  // IP Logging Function
+  const logAccessAttempt = async (success, attemptedPassword = '') => {
+    if (!LOG_ACCESS_ATTEMPTS) return;
+    
+    try {
+      // Get visitor IP
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipData = await ipResponse.json();
+      
+      const logEntry = {
+        timestamp: new Date().toISOString(),
+        ip: ipData.ip,
+        userAgent: navigator.userAgent,
+        success: success,
+        attemptedPassword: success ? '[REDACTED]' : attemptedPassword.substring(0, 3) + '***',
+        screenSize: `${window.screen.width}x${window.screen.height}`,
+        language: navigator.language,
+        platform: navigator.platform,
+        referrer: document.referrer || 'direct',
+      };
+      
+      // Store in localStorage for admin review
+      const existingLogs = JSON.parse(localStorage.getItem('dtgc-access-logs') || '[]');
+      existingLogs.push(logEntry);
+      // Keep last 100 entries
+      if (existingLogs.length > 100) existingLogs.shift();
+      localStorage.setItem('dtgc-access-logs', JSON.stringify(existingLogs));
+      
+      // Console log for monitoring
+      console.log(`🔒 Access ${success ? '✅ GRANTED' : '❌ DENIED'} | IP: ${ipData.ip} | ${new Date().toLocaleString()}`);
+      
+      // Optional: Send to external logging service (webhook)
+      // Uncomment and add your webhook URL to enable:
+      /*
+      await fetch('YOUR_WEBHOOK_URL', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(logEntry),
+      });
+      */
+      
+    } catch (err) {
+      console.warn('⚠️ Failed to log access attempt:', err.message);
+    }
+  };
+
+  // Log page visit on mount (even before password attempt)
+  useEffect(() => {
+    if (PASSWORD_ENABLED && !isAuthenticated && LOG_ACCESS_ATTEMPTS) {
+      const logPageVisit = async () => {
+        try {
+          const ipResponse = await fetch('https://api.ipify.org?format=json');
+          const ipData = await ipResponse.json();
+          console.log(`👁️ Page Visit | IP: ${ipData.ip} | ${new Date().toLocaleString()}`);
+        } catch (err) {
+          // Silent fail
+        }
+      };
+      logPageVisit();
+    }
+  }, []);
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (passwordInput === SITE_PASSWORD) {
+      logAccessAttempt(true);
       setIsAuthenticated(true);
       sessionStorage.setItem('dtgc-mainnet-auth', 'true');
       setPasswordError(false);
     } else {
+      logAccessAttempt(false, passwordInput);
       setPasswordError(true);
       setPasswordInput('');
     }
@@ -2570,6 +2639,31 @@ export default function App() {
     }
     return false;
   });
+
+  // Admin Access Logs Panel (Ctrl+Shift+L to toggle)
+  const [showAdminLogs, setShowAdminLogs] = useState(false);
+  const [adminLogs, setAdminLogs] = useState([]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Ctrl+Shift+L to toggle admin logs panel
+      if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+        e.preventDefault();
+        const logs = JSON.parse(localStorage.getItem('dtgc-access-logs') || '[]');
+        setAdminLogs(logs.reverse()); // Most recent first
+        setShowAdminLogs(prev => !prev);
+      }
+      // Ctrl+Shift+C to clear logs
+      if (e.ctrlKey && e.shiftKey && e.key === 'C' && showAdminLogs) {
+        e.preventDefault();
+        localStorage.removeItem('dtgc-access-logs');
+        setAdminLogs([]);
+        console.log('🗑️ Access logs cleared');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showAdminLogs]);
 
   // Intro video overlay (shows once per session)
   const [showIntro, setShowIntro] = useState(false); // Intro video disabled
@@ -3095,6 +3189,130 @@ export default function App() {
           tierName={stakingTierName}
           isDark={isDark}
         />
+      )}
+
+      {/* ADMIN ACCESS LOGS PANEL (Ctrl+Shift+L) */}
+      {showAdminLogs && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0,0,0,0.95)',
+          zIndex: 99999,
+          overflow: 'auto',
+          padding: '20px',
+          fontFamily: 'monospace',
+        }}>
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '20px',
+              borderBottom: '2px solid #D4AF37',
+              paddingBottom: '15px',
+            }}>
+              <h2 style={{ color: '#D4AF37', margin: 0 }}>🔒 ACCESS LOGS ({adminLogs.length})</h2>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button
+                  onClick={() => {
+                    localStorage.removeItem('dtgc-access-logs');
+                    setAdminLogs([]);
+                  }}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#F44336',
+                    border: 'none',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                  }}
+                >
+                  🗑️ Clear Logs
+                </button>
+                <button
+                  onClick={() => {
+                    const dataStr = JSON.stringify(adminLogs, null, 2);
+                    const blob = new Blob([dataStr], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `dtgc-access-logs-${new Date().toISOString().split('T')[0]}.json`;
+                    a.click();
+                  }}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#4CAF50',
+                    border: 'none',
+                    borderRadius: '5px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                  }}
+                >
+                  📥 Export JSON
+                </button>
+                <button
+                  onClick={() => setShowAdminLogs(false)}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#D4AF37',
+                    border: 'none',
+                    borderRadius: '5px',
+                    color: '#000',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  ✕ Close
+                </button>
+              </div>
+            </div>
+            <p style={{ color: '#888', fontSize: '0.75rem', marginBottom: '15px' }}>
+              Shortcuts: Ctrl+Shift+L (toggle) • Ctrl+Shift+C (clear)
+            </p>
+            {adminLogs.length === 0 ? (
+              <p style={{ color: '#666', textAlign: 'center', padding: '40px' }}>No access logs recorded</p>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {adminLogs.map((log, i) => (
+                  <div key={i} style={{
+                    background: log.success ? 'rgba(76,175,80,0.1)' : 'rgba(244,67,54,0.1)',
+                    border: `1px solid ${log.success ? '#4CAF50' : '#F44336'}`,
+                    borderRadius: '8px',
+                    padding: '12px 15px',
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                      <span style={{ color: log.success ? '#4CAF50' : '#F44336', fontWeight: 'bold' }}>
+                        {log.success ? '✅ ACCESS GRANTED' : '❌ ACCESS DENIED'}
+                      </span>
+                      <span style={{ color: '#888', fontSize: '0.8rem' }}>
+                        {new Date(log.timestamp).toLocaleString()}
+                      </span>
+                    </div>
+                    <div style={{ color: '#fff', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                      <div><strong style={{ color: '#D4AF37' }}>IP:</strong> {log.ip}</div>
+                      <div><strong style={{ color: '#D4AF37' }}>Attempt:</strong> {log.attemptedPassword}</div>
+                      <div><strong style={{ color: '#D4AF37' }}>Platform:</strong> {log.platform}</div>
+                      <div><strong style={{ color: '#D4AF37' }}>Screen:</strong> {log.screenSize}</div>
+                      <div><strong style={{ color: '#D4AF37' }}>Referrer:</strong> {log.referrer}</div>
+                      <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '5px', wordBreak: 'break-all' }}>
+                        {log.userAgent}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       )}
       
       <MarbleBackground />
