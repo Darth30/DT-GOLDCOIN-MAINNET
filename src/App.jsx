@@ -3071,7 +3071,7 @@ export default function App() {
     setTestnetBalances(newBalances);
     localStorage.setItem('dtgc-testnet-balances', JSON.stringify(newBalances));
     
-    showToast(`✅ Unstaked! Received ${formatNumber(returnAmount)} + ${formatNumber(rewards)} rewards${isEarly ? ' (20% early exit fee)' : ''}`, 'success');
+    showToast(`✅ Unstaked! Received ${formatNumber(returnAmount)} + ${formatNumber(rewards)} rewards${isEarly ? ' (12% early exit fee)' : ''}`, 'success');
   };
 
   const copyToClipboard = (text) => {
@@ -3556,7 +3556,7 @@ export default function App() {
               gap: '12px',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '0.75rem', color: '#888' }}>CONTROLLED:</span>
+                <span style={{ fontSize: '0.75rem', color: '#888' }}>PROJECT SUPPLY:</span>
                 <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#4CAF50' }}>
                   {(((supplyDynamics.dao + supplyDynamics.dev + supplyDynamics.lpLocked) / DTGC_TOTAL_SUPPLY) * 100).toFixed(1)}%
                 </span>
